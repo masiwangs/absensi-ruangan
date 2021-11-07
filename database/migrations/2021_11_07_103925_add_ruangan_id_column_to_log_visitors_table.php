@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleIdToUsersTable extends Migration
+class AddRuanganIdColumnToLogVisitorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRoleIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+        Schema::table('log_visitors', function (Blueprint $table) {
+            $table->foreignId("ruangan_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class AddRoleIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('log_visitors', function (Blueprint $table) {
             //
         });
     }

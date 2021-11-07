@@ -20,7 +20,7 @@ class CreateLogVisitorsTable extends Migration
             $table->timestamp('jam_masuk')->nullable();
             $table->timestamp('jam_keluar')->nullable();
             $table->longText('keperluan')->nullable();
-            $table->foreignId('pic_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->integer('pic_id')->nullable();
             $table->timestamps();
         });
     }

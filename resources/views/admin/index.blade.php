@@ -25,7 +25,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <h6 class="text-muted font-semibold">Ruangan</h6>
-                                                    <h6 class="font-extrabold mb-0">112</h6>
+                                                    <h6 class="font-extrabold mb-0">{{ $count_ruangan }}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -41,8 +41,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <h6 class="text-muted font-semibold">Pengunjung</h6>
-                                                    <h6 class="font-extrabold mb-0">183</h6>
+                                                    <h6 class="text-muted font-semibold">Kunjungan</h6>
+                                                    <h6 class="font-extrabold mb-0">{{ $count_visitor }}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <h6 class="text-muted font-semibold">PIC</h6>
-                                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                                    <h6 class="font-extrabold mb-0">{{ $count_pic }}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,13 +83,14 @@
                                     <div class="card">
                                         <div class="card-header d-flex justify-content-between">
                                             <h4>Log Terakhir</h4>
-                                            <a href="">Eksport data</a>
+                                            <a class="text-primary" href="{{ route('admin.log.index') }}"><i class="bi bi-eye"></i> Lihat semua</a>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover table-lg">
+                                                <table class="table table-hover table-lg" style="font-size: .8rem">
                                                     <thead>
                                                         <tr>
+                                                            <th>Tanggal</th>
                                                             <th>Nama</th>
                                                             <th>Perusahaan</th>
                                                             <th>Jam Masuk</th>
@@ -99,14 +100,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach ($last_five_logs as $log)
                                                         <tr>
-                                                            <td>April</td>
-                                                            <td>PT. Sentosa</td>
-                                                            <td>12.00</td>
-                                                            <td>14.30</td>
-                                                            <td>Briefing</td>
-                                                            <td>Anton</td>
+                                                            <td>{{ date('d M Y', strtotime($log->jam_masuk)) }}</td>
+                                                            <td>{{ $log->nama_visitor }}</td>
+                                                            <td>{{ $log->nama_perusahaan }}</td>
+                                                            <td>{{ date('H:i', strtotime($log->jam_masuk)) }}</td>
+                                                            <td>{{ $log->jam_keluar ? date('H:i', strtotime($log->jam_keluar)) : '-' }}</td>
+                                                            <td>{{ $log->keperluan }}</td>
+                                                            <td>{{ $log->pic->name }}</td>
                                                         </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -131,45 +135,28 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Ruangan</h4>
-                                </div>
-                                <div class="card-content pb-4">
-                                    <div class="recent-message d-flex px-4 py-3">
-                                        <div class="stats-icon green rounded-circle text-light">
-                                            <i class="bi-door-open"></i>
-                                        </div>
-                                        <div class="name ms-4">
-                                            <h5 class="mb-1">Ruangan A</h5>
-                                            <h6 class="text-muted mb-0">John</h6>
-                                        </div>
-                                    </div>
-                                    <div class="recent-message d-flex px-4 py-3">
-                                        <div class="stats-icon green rounded-circle text-light">
-                                            <i class="bi-door-open"></i>
-                                        </div>
-                                        <div class="name ms-4">
-                                            <h5 class="mb-1">Ruangan B</h5>
-                                            <h6 class="text-muted mb-0">Dendi</h6>
-                                        </div>
-                                    </div>
-                                    <div class="recent-message d-flex px-4 py-3">
-                                        <div class="stats-icon red rounded-circle text-light">
-                                            <i class="bi-door-closed"></i>
-                                        </div>
-                                        <div class="name ms-4">
-                                            <h5 class="mb-1">Ruangan C <span class="h6">(closed)</span></h5>
-                                            <h6 class="text-muted mb-0">Ihsan</h6>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
                                     <h4>Visitors Profile</h4>
                                 </div>
                                 <div class="card-body">
                                     <div id="chart-visitors-profile"></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Ruangan</h4>
+                                </div>
+                                <div class="card-content pb-4">
+                                    @foreach ($ruangans as $ruangan)
+                                    <div class="recent-message d-flex px-4 py-3">
+                                        <div class="stats-icon {{ $ruangan->tersedia == 1 ? 'green' : 'red' }} rounded-circle text-light">
+                                            <i class="bi-door-{{ $ruangan->tersedia == 1 ? 'open' : 'closed' }}"></i>
+                                        </div>
+                                        <div class="name ms-4">
+                                            <h5 class="mb-1">{{ $ruangan->nama }}</h5>
+                                            <h6 class="text-muted mb-0">{{ $ruangan->kapasitas }}</h6>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -197,19 +184,16 @@
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script>
             var options = {
-                series: [{
-                    name: 'Ruangan A',
-                    data: [44, 55, 41, 67, 22, 43]
-                }, {
-                    name: 'Ruangan B',
-                    data: [13, 23, 20, 8, 13, 27]
-                }, {
-                    name: 'Ruangan C',
-                    data: [11, 17, 15, 15, 21, 14]
-                }, {
-                    name: 'Ruangan D',
-                    data: [21, 7, 25, 13, 22, 8]
-                }],
+                series: [
+                    @php
+                        foreach($ruangans as $ruangan){
+                            echo "{
+                                name: 'Ruangan ".$ruangan->nama."',
+                                data: [44, 55, 41, 67, 22, 43]
+                            }, ";
+                        }
+                    @endphp
+                ],
                 chart: {
                     type: 'bar',
                     height: 350,
@@ -255,14 +239,22 @@
             var chart = new ApexCharts(document.querySelector("#chart-penggunaan-ruangan"), options);
             chart.render();
         </script>
+        @php
+            $visitor_profile_label = [];
+            $visitor_profile_value = [];
+            foreach ($visitor_profile_data as $data) {
+                array_push($visitor_profile_label, $data->nama_perusahaan);
+                array_push($visitor_profile_value, $data->jumlah);
+            }
+        @endphp
         <script>
             var options = {
-                series: [44, 55, 13, 43, 22],
+                series: @json($visitor_profile_value),
                 chart: {
                     width: 260,
                     type: 'pie',
                 },
-                labels: ['Perusahaan A', 'Perusahaan B', 'Perusahaan C', 'Perusahaan D', 'Perusahaan E'],
+                labels: @json($visitor_profile_label),
                 responsive: [{
                     breakpoint: 480,
                     options: {

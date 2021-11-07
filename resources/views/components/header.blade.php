@@ -2,7 +2,7 @@
     <div class="header-top">
         <div class="container">
             <div class="logo">
-                <a class="h4" href="index.html">Absensi Ruangan</a>
+                <a class="h4" href="/admin">Absensi Ruangan</a>
             </div>
             <div class="header-top-right">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -31,7 +31,7 @@
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
                                 <li class="submenu-item ">
-                                    <a href="#" class='submenu-link'>Semua Log</a> 
+                                    <a href="{{ route('admin.log.index') }}" class='submenu-link'>Semua Log</a> 
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="/" class='submenu-link'>Log Baru</a> 
@@ -50,7 +50,10 @@
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
                                 <li class="submenu-item  ">
-                                    <a href="#" class='submenu-link'>Manajemen Ruangan</a> 
+                                    <a href="{{ route('admin.ruangan.index') }}" class='submenu-link'>Daftar Ruangan</a> 
+                                </li>
+                                <li class="submenu-item">
+                                    <a href="{{ route('admin.ruangan.baru') }}" class='submenu-link'>Ruangan Baru</a> 
                                 </li>
                             </ul>
                         </div>
@@ -66,7 +69,10 @@
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
                                 <li class="submenu-item  ">
-                                    <a href="#" class='submenu-link'>Manajemen PIC</a> 
+                                    <a href="{{ route('admin.pic.index') }}" class='submenu-link'>Manajemen PIC</a> 
+                                </li>
+                                <li class="submenu-item  ">
+                                    <a href="{{ route('admin.pic.baru') }}" class='submenu-link'>PIC Baru</a> 
                                 </li>
                             </ul>
                         </div>
