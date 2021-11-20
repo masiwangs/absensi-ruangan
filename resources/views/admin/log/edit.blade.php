@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="title">Log Baru</x-slot>
+    <x-slot name="title">Edit Log</x-slot>
 
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="page-content">
                     <section class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-4 offset-lg-4">
                             <div class="card">
                                 <div class="card-body">
                                     <form method="POST">
@@ -42,6 +42,10 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label">Perusahaan</label>
                                             <input type="text" name="nama_perusahaan" value="{{ $log->nama_perusahaan }}" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Tanggal</label>
+                                            <input type="date" name="tanggal" value="{{ $log->tanggal }}" class="form-control">
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-6">

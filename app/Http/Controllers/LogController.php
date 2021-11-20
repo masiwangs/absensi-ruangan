@@ -90,14 +90,16 @@ class LogController extends Controller
                 'keperluan' => $request->keperluan,
                 'ruangan_id' => $request->ruangan,
                 'pic_id' => $pic->id,
+                'tanggal' => $request->tanggal
             ]);
 
             notify()->success('Log telah diupdate');
+            return redirect()->route('admin.log.index');
         } else {
             notify()->error('Terjadi kesalahan');
+            return back();
         }
 
-        return back();
     }
 
     public function keluar($id) {
