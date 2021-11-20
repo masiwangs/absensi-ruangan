@@ -24,7 +24,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nama Ruangan</th>
-                                                    <th>Kapasitas</th>
                                                     <th>Ketersediaan</th>
                                                     <th>Penggunaan Semua Waktu</th>
                                                     <th>Bulan Ini</th>
@@ -37,7 +36,6 @@
                                                 @foreach ($ruangans as $ruangan)
                                                 <tr>
                                                     <td>{{ $ruangan->nama }}</td>
-                                                    <td>{{ $ruangan->kapasitas }}</td>
                                                     <td>
                                                         @if($ruangan->tersedia === 1)
                                                         <span class="text-success">

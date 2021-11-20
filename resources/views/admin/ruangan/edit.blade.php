@@ -20,10 +20,6 @@
                                         <label for="" class="form-label">Nama Ruangan</label>
                                         <input type="text" name="nama" value="{{ $ruangan->nama }}" class="form-control">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Kapasitas Ruangan</label>
-                                        <input type="number" name="kapasitas" value="{{ $ruangan->kapasitas }}" class="form-control">
-                                    </div>
                                     <div class="mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="tersedia" id="flexCheckChecked" @if($ruangan->tersedia == 1) checked @endif>

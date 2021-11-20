@@ -20,10 +20,6 @@
                                         <label for="" class="form-label">Nama Ruangan</label>
                                         <input type="text" name="nama" id="" class="form-control">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Kapasitas Ruangan</label>
-                                        <input type="number" name="kapasitas" id="" class="form-control">
-                                    </div>
                                     <div class="mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="tersedia" id="flexCheckChecked">

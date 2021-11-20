@@ -29,12 +29,10 @@ class RuanganController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nama' => 'required',
-            'kapasitas' => 'numeric',
         ]);
 
         Ruangan::create([
             'nama' => $request->nama,
-            'kapasitas' => $request->kapasitas ?? 0,
             'tersedia' => $request->tersedia ? 1 : 0
         ]);
 
@@ -53,7 +51,6 @@ class RuanganController extends Controller
         if($ruangan) {
             $ruangan->update([
                 'nama' => $request->nama,
-                'kapasitas' => $request->kapasitas ?? 0,
                 'tersedia' => $request->tersedia ? 1 : 0
             ]);
             notify()->success('Ruangan telah diupdate');
