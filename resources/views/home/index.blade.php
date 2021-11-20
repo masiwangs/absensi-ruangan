@@ -7,8 +7,8 @@
 
             <div class="content-wrapper container">
 
-                <div class="page-heading">
-                    <h3>Log Baru</h3>
+                <div class="page-heading d-flex justify-content-center">
+                    <h4 class="h4">Activity Log Indonesia Eximbank</h4>
                 </div>
                 <div class="page-content">
                     <section class="row">
@@ -20,7 +20,6 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label">Ruangan</label>
                                             <select class="form-select" name="ruangan" aria-label="Default select example">
-                                                <option selected>Pilih ruangan</option>
                                                 @foreach ($ruangans as $ruangan)
                                                 <option value="{{ $ruangan->id }}">{{ $ruangan->nama }}</option>
                                                 @endforeach
