@@ -39,7 +39,22 @@
                                                     <td class="text-nowrap">{{ $log->ruangan->nama }}</td>
                                                     <td>
                                                         <div class="text-secondary" style="font-size: .7rem">{{ $log->nama_perusahaan }}</div>
-                                                        <div>{{ $log->nama_visitor }}</div>
+                                                        <div class="d-flex flex-row">
+                                                            <span class="me-2">
+                                                                {{ $log->nama_visitor }}
+                                                            </span>
+                                                            @if($log->hp)
+                                                            <div class="dropdown">
+                                                                <span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i class="bi bi-telephone-fill"></i>
+                                                                </span>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                  <li><small class="dropdown-item">{{ $log->hp }}</small></li>
+                                                                </ul>
+                                                            </div>
+                                                            @endif
+                                                        </div>
+                                                        <div>{{ $log->ktp }}</div>
                                                     </td>
                                                     <td>
                                                         <div class="text-nowrap"><i class="bi bi-arrow-right-circle-fill text-success"></i> {{ date('H:i:s', strtotime($log->jam_masuk)) }}</div>

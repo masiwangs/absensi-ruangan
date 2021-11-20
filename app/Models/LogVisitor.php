@@ -17,7 +17,9 @@ class LogVisitor extends Model
         'keperluan',
         'pic_id',
         'ruangan_id',
-        'tanggal'
+        'tanggal',
+        'ktp',
+        'hp'
     ];
 
     public function ruangan() {

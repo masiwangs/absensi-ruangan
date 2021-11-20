@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover table-lg" style="font-size: .8rem">
+                                                <table class="table table-hover" style="font-size: .8rem">
                                                     <thead>
                                                         <tr>
                                                             <th>Tanggal</th>
@@ -105,7 +105,22 @@
                                                             <td class="text-nowrap">{{ $log->ruangan->nama }}</td>
                                                             <td>
                                                                 <div class="text-secondary" style="font-size: .7rem">{{ $log->nama_perusahaan }}</div>
-                                                                <div>{{ $log->nama_visitor }}</div>
+                                                                <div class="d-flex flex-row">
+                                                                    <span class="me-2">
+                                                                        {{ $log->nama_visitor }}
+                                                                    </span>
+                                                                    @if($log->hp)
+                                                                    <div class="dropdown">
+                                                                        <span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <i class="bi bi-telephone-fill"></i>
+                                                                        </span>
+                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                          <li><small class="dropdown-item">{{ $log->hp }}</small></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    @endif
+                                                                </div>
+                                                                <div>{{ $log->ktp }}</div>
                                                             </td>
                                                             <td>
                                                                 <div class="text-nowrap"><i class="bi bi-arrow-right-circle-fill text-success"></i> {{ date('H:i:s', strtotime($log->jam_masuk)) }}</div>
@@ -114,6 +129,15 @@
                                                             </td>
                                                             <td style="min-width: 150px">{{ $log->keperluan }}</td>
                                                             <td class="text-nowrap">{{ $log->pic->name }}</td>
+                                                            <td>
+                                                                <p class="text-nowrap">
+                                                                    <a class="btn btn-sm my-auto py-0 px-1 btn-primary @if($log->jam_keluar) disabled @endif" href="{{ route('admin.log.keluar', ['id' => $log->id]) }}">Keluar</a>
+                                                                    <span> | </span>
+                                                                    <a class="btn btn-sm my-auto py-0 px-1 btn-secondary" href="{{ route('admin.log.edit', ['id' => $log->id]) }}">Edit</a>
+                                                                    <span> | </span>
+                                                                    <a class="btn btn-sm my-auto py-0 px-1 btn-danger" href="">Hapus</a>
+                                                                </p>
+                                                            </td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

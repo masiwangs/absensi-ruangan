@@ -17,7 +17,7 @@ class AdminController extends Controller
         $count_ruangan = Ruangan::count();
         $count_visitor = LogVisitor::count();
         $count_pic = User::where('role', 'pic')->count();
-        $last_five_logs = LogVisitor::orderBy('id')->limit(5)->get();
+        $last_five_logs = LogVisitor::orderByDesc('id')->limit(5)->get();
         $ruangans = Ruangan::orderBy('nama')->get();
         $visitor_profile_data = LogVisitor::select('nama_perusahaan', DB::raw('count(nama_perusahaan) as jumlah'))->groupBy('nama_perusahaan')->get();
     
@@ -30,11 +30,10 @@ class AdminController extends Controller
         $log_collection = collect(
             LogVisitor::select(
                 'ruangan_id',
-                DB::raw('DATE(jam_masuk) as date'))
-            ->where('jam_masuk', '>=', $log_start)
+                'tanggal')
+            ->where('tanggal', '>=', $log_start)
             ->get()
         );
-        // return $log_collection->where('date', '2021-11-07')->count();
         $log_data = [];
         $log_label = [];
         foreach ($ruangans as $index => $ruangan) {
@@ -43,8 +42,11 @@ class AdminController extends Controller
                 array_push(
                     $temp_data,
                     $log_collection->where('ruangan_id', $ruangan->id)
-                        ->where('date', $periode->format('Y-m-d'))->count()
+                        ->where('tanggal', $periode->format('Y-m-d'))->count()
                 );
+                // if($periode->format('Y-m-d') == '2021-11-21'){
+                //     return $log_collection;
+                // }
                 if($index == 0) {
                     array_push($log_label, $periode->format('Y-m-d'));
                 }

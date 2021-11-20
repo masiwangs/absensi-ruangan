@@ -50,6 +50,8 @@ class LogController extends Controller
             'jam_keluar' => $request->jam_keluar ? Carbon::createFromTimeString($request->jam_keluar) : null,
             'keperluan' => $request->keperluan,
             'ruangan_id' => $request->ruangan,
+            'ktp' => $request->ktp,
+            'hp' => $request->hp,
             'pic_id' => $pic->id,
             'tanggal' => $request->tanggal ?? Date::now() // if no date inputed, it will automated to now()
         ]);
@@ -90,7 +92,9 @@ class LogController extends Controller
                 'keperluan' => $request->keperluan,
                 'ruangan_id' => $request->ruangan,
                 'pic_id' => $pic->id,
-                'tanggal' => $request->tanggal
+                'tanggal' => $request->tanggal,
+                'ktp' => $request->ktp,
+                'hp' => $request->hp,
             ]);
 
             notify()->success('Log telah diupdate');

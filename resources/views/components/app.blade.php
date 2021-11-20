@@ -20,6 +20,10 @@
         .btn-primary {
             background-color: #254990
         }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; // remove the gap so it doesn't close
+        }
     </style>
     {{ $head ?? null }}
     {{ $auth ?? null }}
