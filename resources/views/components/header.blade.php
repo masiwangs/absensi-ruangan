@@ -2,7 +2,9 @@
     <div class="header-top">
         <div class="container">
             <div class="logo">
-                <a class="h4" href="/admin">Absensi Ruangan</a>
+                <a class="h4" href="/admin">
+                    <img src="/assets/images/logo/logo.png" style="height: 1.5em" alt="">
+                </a>
             </div>
             <div class="header-top-right">
                 <a href="#" class="burger-btn d-block d-xl-none">
