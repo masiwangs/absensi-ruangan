@@ -14,6 +14,12 @@
         html, body {
             font-family: 'Zen Kaku Gothic Antique', sans-serif;
         }
+        h1, h2, h3, h4, h5, h6 {
+            color: #254990!important
+        }
+        .btn-primary {
+            background-color: #254990
+        }
     </style>
     {{ $head ?? null }}
     {{ $auth ?? null }}
