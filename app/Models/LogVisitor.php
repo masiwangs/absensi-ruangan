@@ -16,7 +16,8 @@ class LogVisitor extends Model
         'jam_keluar',
         'keperluan',
         'pic_id',
-        'ruangan_id'
+        'ruangan_id',
+        'tanggal'
     ];
 
     public function ruangan() {

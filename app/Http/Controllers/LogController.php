@@ -7,6 +7,7 @@ use App\Models\Ruangan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class LogController extends Controller
 {
@@ -42,17 +43,15 @@ class LogController extends Controller
             return back();
         }
 
-        // $exploded_jam_masuk = $request->jam_masuk ? explode(':', $request->jam_masuk) : [];
-        // $exploded_jam_keluar = $request->jam_keluar ? explode(':', $request->jam_keluar) : [];
-
         LogVisitor::create([
             'nama_visitor' => $request->nama_visitor,
             'nama_perusahaan' => $request->nama_perusahaan,
-            'jam_masuk' => Carbon::createFromTimeString($request->jam_masuk.':00'),
-            'jam_keluar' => $request->jam_keluar ? Carbon::createFromTimeString($request->jam_keluar.':00') : null,
+            'jam_masuk' => Carbon::createFromTimeString($request->jam_masuk),
+            'jam_keluar' => $request->jam_keluar ? Carbon::createFromTimeString($request->jam_keluar) : null,
             'keperluan' => $request->keperluan,
             'ruangan_id' => $request->ruangan,
             'pic_id' => $pic->id,
+            'tanggal' => $request->tanggal ?? Date::now() // if no date inputed, it will automated to now()
         ]);
 
         notify()->success('Log telah disimpan.');

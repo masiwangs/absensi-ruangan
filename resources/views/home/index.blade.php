@@ -42,10 +42,14 @@
                                             <label for="" class="form-label">Perusahaan</label>
                                             <input type="text" name="nama_perusahaan" id="" class="form-control">
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Tanggal</label>
+                                            <input type="date" name="tanggal" value="{{ Date::now()->format('Y-m-d') }}" class="form-control">
+                                        </div>
                                         <div class="row mb-3">
                                             <div class="col-6">
                                                 <label for="" class="form-label">Jam Masuk</label>
-                                                <input type="time" name="jam_masuk" id="" class="form-control">
+                                                <input type="time" name="jam_masuk" value="{{ Date::now()->format('H:i:s') }}" class="form-control">
                                             </div>
                                             <div class="col-6">
                                                 <label for="" class="form-label">Jam Keluar</label>
