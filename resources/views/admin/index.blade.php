@@ -91,10 +91,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Tanggal</th>
-                                                            <th>Nama</th>
-                                                            <th>Perusahaan</th>
-                                                            <th>Jam Masuk</th>
-                                                            <th>Jam Keluar</th>
+                                                            <th>Nama Ruangan</th>
+                                                            <th>Nama Pengunjung</th>
+                                                            <th>Jam</th>
                                                             <th>Keperluan</th>
                                                             <th>PIC</th>
                                                         </tr>
@@ -102,13 +101,19 @@
                                                     <tbody>
                                                         @foreach ($last_five_logs as $log)
                                                         <tr>
-                                                            <td>{{ date('d M Y', strtotime($log->tanggal)) }}</td>
-                                                            <td>{{ $log->nama_visitor }}</td>
-                                                            <td>{{ $log->nama_perusahaan }}</td>
-                                                            <td>{{ date('H:i', strtotime($log->jam_masuk)) }}</td>
-                                                            <td>{{ $log->jam_keluar ? date('H:i', strtotime($log->jam_keluar)) : '-' }}</td>
-                                                            <td>{{ $log->keperluan }}</td>
-                                                            <td>{{ $log->pic->name }}</td>
+                                                            <td class="text-nowrap">{{ date('d M Y', strtotime($log->tanggal)) }}</td>
+                                                            <td class="text-nowrap">{{ $log->ruangan->nama }}</td>
+                                                            <td>
+                                                                <div class="text-secondary" style="font-size: .7rem">{{ $log->nama_perusahaan }}</div>
+                                                                <div>{{ $log->nama_visitor }}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="text-nowrap"><i class="bi bi-arrow-right-circle-fill text-success"></i> {{ date('H:i:s', strtotime($log->jam_masuk)) }}</div>
+                                                                <div class="text-nowrap"><i class="bi bi-arrow-left-circle-fill text-danger"></i> {{ $log->jam_keluar ? date('H:i:s', strtotime($log->jam_keluar)) : '-' }}</div>
+                                                                
+                                                            </td>
+                                                            <td style="min-width: 150px">{{ $log->keperluan }}</td>
+                                                            <td class="text-nowrap">{{ $log->pic->name }}</td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
