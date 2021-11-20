@@ -102,7 +102,7 @@
                                                     <tbody>
                                                         @foreach ($last_five_logs as $log)
                                                         <tr>
-                                                            <td>{{ date('d M Y', strtotime($log->jam_masuk)) }}</td>
+                                                            <td>{{ date('d M Y', strtotime($log->tanggal)) }}</td>
                                                             <td>{{ $log->nama_visitor }}</td>
                                                             <td>{{ $log->nama_perusahaan }}</td>
                                                             <td>{{ date('H:i', strtotime($log->jam_masuk)) }}</td>

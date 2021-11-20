@@ -37,7 +37,7 @@
                                             <tbody>
                                                 @foreach ($logs as $log)
                                                 <tr>
-                                                    <td class="text-nowrap">{{ date('d F Y', strtotime($log->jam_masuk)) }}</td>
+                                                    <td class="text-nowrap">{{ date('d F Y', strtotime($log->tanggal)) }}</td>
                                                     <td class="text-nowrap">{{ $log->ruangan->nama }}</td>
                                                     <td>{{ $log->nama_visitor }}</td>
                                                     <td>{{ $log->nama_perusahaan }}</td>
