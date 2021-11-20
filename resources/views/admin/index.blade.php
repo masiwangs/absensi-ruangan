@@ -179,17 +179,17 @@
             </footer>
         </div>
     </div>
-
+    
     <x-slot name="foot">
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script>
             var options = {
                 series: [
                     @php
-                        foreach($ruangans as $ruangan){
+                        foreach($log_data as $log){
                             echo "{
-                                name: 'Ruangan ".$ruangan->nama."',
-                                data: [44, 55, 41, 67, 22, 43]
+                                name: 'Ruangan ".$log['ruangan']."',
+                                data: ".json_encode($log['data'])."
                             }, ";
                         }
                     @endphp
@@ -223,13 +223,10 @@
                 },
                 xaxis: {
                     type: 'datetime',
-                    categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
-                        '01/05/2011 GMT', '01/06/2011 GMT'
-                    ],
+                    categories: @json($log_label),
                 },
                 legend: {
-                    position: 'right',
-                    offsetY: 40
+                    position: 'bottom',
                 },
                 fill: {
                     opacity: 1
