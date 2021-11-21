@@ -8,7 +8,7 @@
             <div class="content-wrapper container">
 
                 <div class="page-heading d-flex justify-content-center">
-                    <h4 class="h4">Activity Log Indonesia Eximbank</h4>
+                    <h4 class="h4">Data Center Log Indonesia Eximbank</h4>
                 </div>
                 <div class="page-content">
                     <section class="row">
