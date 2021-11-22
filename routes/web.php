@@ -27,6 +27,8 @@ Route::post('/', [LogController::class, 'store']);
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/admin/log', [LogController::class, 'index'])->name('admin.log.index');
+Route::get('/admin/log/export', [LogController::class, 'exportPreview'])->name('admin.log.export');
+Route::post('/admin/log/export', [LogController::class, 'export'])->name('admin.log.export');
 Route::get('/admin/log/{id}/edit', [LogController::class, 'edit'])->name('admin.log.edit');
 Route::post('/admin/log/{id}/edit', [LogController::class, 'update']);
 Route::get('/admin/log/{id}/keluar', [LogController::class, 'keluar'])->name('admin.log.keluar');

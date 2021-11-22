@@ -40,6 +40,9 @@
                                 <li class="submenu-item ">
                                     <a href="/" class='submenu-link'>Log Baru</a> 
                                 </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ route('admin.log.export') }}" class='submenu-link'>Export Log</a> 
+                                </li>
                             </ul>
                         </div>
                     </div>

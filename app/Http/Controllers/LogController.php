@@ -8,6 +8,10 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class LogController extends Controller
 {
@@ -20,6 +24,88 @@ class LogController extends Controller
         $logs = $logs->get();
         $ruangans = Ruangan::get();
         return view('admin.log.index', compact('logs', 'ruangans'));
+    }
+
+    public function exportPreview(Request $request) {
+        $logs = LogVisitor::orderBy('id');
+        $ruangan = null;
+        if($request->ruangan) {
+            $ruangan = Ruangan::where('nama', 'like', '%'.$request->ruangan.'%')->first();
+            $logs = $logs->where('ruangan_id', $ruangan->id);
+        }
+        if($request->date) {
+            $logs = $logs->where('tanggal', $request->date);
+        }
+        $logs = $logs->get();
+        $ruangans = Ruangan::get();
+        return view('admin.log.export', compact('logs', 'ruangans', 'ruangan'));
+    }
+
+    public function export(Request $request) {
+        $logs = LogVisitor::orderBy('id');
+        $ruangan = null;
+        if($request->ruangan) {
+            $ruangan = Ruangan::where('nama', 'like', '%'.$request->ruangan.'%')->first();
+            $logs = $logs->where('ruangan_id', $ruangan->id);
+        }
+        if($request->date) {
+            $logs = $logs->where('tanggal', $request->date);
+        }
+        $logs = $logs->get();
+        $ruangans = Ruangan::get();
+        
+        $merge_and_center = [
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_CENTER
+            ]
+        ];
+        
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Data Center Log Indonesia Eximbank');
+        $sheet->setCellValue('A2', $request->ruangan ? 'Ruang '.$ruangan->nama : 'Semua ruangan');
+        // heading
+        $sheet->setCellValue('A4', 'Tanggal')->getStyle('A4')->getFont()->setBold(1);
+        $sheet->setCellValue('B4', 'Nomor KTP')->getStyle('B4')->getFont()->setBold(1);
+        $sheet->setCellValue('C4', 'Nama')->getStyle('C4')->getFont()->setBold(1);
+        $sheet->setCellValue('D4', 'Nomor HP')->getStyle('D4')->getFont()->setBold(1);
+        $sheet->setCellValue('E4', 'Perusahaan/Institusi')->getStyle('E4')->getFont()->setBold(1);
+        $sheet->setCellValue('F4', 'Jam Masuk')->getStyle('F4')->getFont()->setBold(1);
+        $sheet->setCellValue('G4', 'Jam Keluar')->getStyle('G4')->getFont()->setBold(1);
+        $sheet->setCellValue('H4', 'Keperluan')->getStyle('H4')->getFont()->setBold(1);
+        $sheet->setCellValue('I4', 'PIC TSI')->getStyle('I4')->getFont()->setBold(1);
+        // data
+        foreach ($logs as $key => $log) {
+            $sheet->setCellValue('A'.((int)$key+5), date('d M Y', strtotime($log->tanggal)));
+            $spreadsheet->getActiveSheet()->getCell('B'.((int)$key+5))->setValueExplicit($log->ktp, DataType::TYPE_STRING);
+            $sheet->setCellValue('C'.((int)$key+5), $log->nama_visitor);
+            $sheet->setCellValue('D'.((int)$key+5), $log->hp);
+            $sheet->setCellValue('E'.((int)$key+5), $log->nama_perusahaan);
+            $sheet->setCellValue('F'.((int)$key+5), $log->jam_masuk);
+            $sheet->setCellValue('G'.((int)$key+5), $log->jam_keluar);
+            $sheet->setCellValue('H'.((int)$key+5), $log->keperluan);
+            $sheet->setCellValue('I'.((int)$key+5), $log->pic->name);
+            // cell data type
+        }
+        // merge and center
+        $spreadsheet->getActiveSheet()->mergeCells('A1:I1')->getStyle('A1')->applyFromArray($merge_and_center)->getFont()->setSize(14)->setBold(1);
+        $spreadsheet->getActiveSheet()->mergeCells('A2:I2')->getStyle('A2')->applyFromArray($merge_and_center)->getFont()->setSize(14)->setBold(1);
+        // column width
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(90, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(130, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(200, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(110, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(150, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(90, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(90, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(300, 'px');
+        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(150, 'px');
+        $writer = new Xlsx($spreadsheet);
+
+        $filename = Date::now()->timestamp.'-'.$request->date.'-'.($request->ruangan ?? 'all').'.xlsx';
+        $writer->save('download/'.$filename);
+
+        return redirect('/download/'.$filename);
     }
 
     public function store(Request $request) {
