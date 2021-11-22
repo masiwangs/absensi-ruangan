@@ -153,11 +153,11 @@
                                 <div class="card-body py-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="stats-icon red rounded-circle text-light">
-                                            A
+                                            {{ Str::substr(explode(' ', auth()->user()->name)[0], 0, 1) }}
                                         </div>
                                         <div class="ms-3 name">
-                                            <h5 class="font-bold">Hi, Admin!</h5>
-                                            <h6 class="text-muted mb-0">Super Admin</h6>
+                                            <h5 class="font-bold mb-1">Hi, {{ explode(' ', auth()->user()->name)[0] }}!</h5>
+                                            <a href="/admin/profile" style="font-size: .8rem" class="text-primary"><i class="bi bi-gear"></i> Pengaturan profil</a>
                                         </div>
                                     </div>
                                 </div>

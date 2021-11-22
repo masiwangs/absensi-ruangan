@@ -9,7 +9,9 @@ use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -71,5 +73,42 @@ class AdminController extends Controller
                 'log_data',
                 'log_label'
             ));
+    }
+
+    public function profile() {
+        return view('admin.profile.index');
+    }
+
+    public function profileUpdate(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'name' => 'required'
+        ]);
+
+        $user = User::find(auth()->id());
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return back()->with('success', 'Profil berhasil diperbarui.');
+    }
+
+    public function security() {
+        return view('admin.profile.security');
+    }
+
+    public function securityUpdate(Request $request) {
+        $request->validate([
+            'password' => 'required|min:6',
+            'password_confirm' => 'required|min:6|same:password',
+        ]);
+
+        $user = User::find(auth()->id());
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return back()->with('success', 'Password berhasil diperbarui.');
     }
 }
