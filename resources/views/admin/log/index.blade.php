@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="title">Dashboard Admin</x-slot>
+    <x-slot name="title">List Log</x-slot>
 
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -19,6 +19,11 @@
                                     <a href="{{ route('home') }}" class="btn my-auto text-primary"><i class="bi bi-plus"></i> Log Baru</a>
                                 </div>
                                 <div class="card-body">
+                                    @if(\Session::has('success'))
+                                    <div class="alert alert-success mb-4" role="alert">
+                                        {{ \Session::get('success') }}
+                                    </div>
+                                    @endif
                                     <div class="table-responsive">
                                         <table class="table table-hover" style="font-size: .8rem">
                                             <thead>
@@ -28,7 +33,7 @@
                                                     <th>Nama Pengguna</th>
                                                     <th>Jam</th>
                                                     <th>Keperluan</th>
-                                                    <th>PIC</th>
+                                                    <th>PIC TSI</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -69,7 +74,7 @@
                                                             <span> | </span>
                                                             <a class="btn btn-sm my-auto py-0 px-1 btn-secondary" href="{{ route('admin.log.edit', ['id' => $log->id]) }}">Edit</a>
                                                             <span> | </span>
-                                                            <a class="btn btn-sm my-auto py-0 px-1 btn-danger" href="">Hapus</a>
+                                                            <a class="btn btn-sm my-auto py-0 px-1 btn-danger" href="/admin/log/{{ $log->id }}/hapus">Hapus</a>
                                                         </p>
                                                     </td>
                                                 </tr>
@@ -115,18 +120,6 @@
                 </div>
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </x-app>

@@ -16,7 +16,7 @@
         </div>
     </div>
     @if($without != 'navbar')
-    <nav class="main-navbar">
+    <nav class="main-navbar" style="background-color: #244d8f!important">
         <div class="container">
             <ul>
                 <li class="menu-item  ">
@@ -69,17 +69,17 @@
                 <li class="menu-item  has-sub">
                     <a href="#" class='menu-link'>
                         <i class="bi bi-person-badge-fill"></i>
-                        <span>PIC</span>
+                        <span>PIC TSI</span>
                     </a>
                     <div class="submenu ">
                         <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
                                 <li class="submenu-item  ">
-                                    <a href="{{ route('admin.pic.index') }}" class='submenu-link'>Manajemen PIC</a> 
+                                    <a href="{{ route('admin.pic.index') }}" class='submenu-link'>Manajemen PIC TSI</a> 
                                 </li>
                                 <li class="submenu-item  ">
-                                    <a href="{{ route('admin.pic.baru') }}" class='submenu-link'>PIC Baru</a> 
+                                    <a href="{{ route('admin.pic.baru') }}" class='submenu-link'>PIC TSI Baru</a> 
                                 </li>
                             </ul>
                         </div>

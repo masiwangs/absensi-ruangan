@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="title">Dashboard Admin</x-slot>
+    <x-slot name="title">List Ruangan</x-slot>
 
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -25,10 +25,6 @@
                                                 <tr>
                                                     <th>Nama Ruangan</th>
                                                     <th>Ketersediaan</th>
-                                                    <th>Penggunaan Semua Waktu</th>
-                                                    <th>Bulan Ini</th>
-                                                    <th>Minggu Ini</th>
-                                                    <th>Hari Ini</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -47,10 +43,6 @@
                                                         </span>
                                                         @endif
                                                     </td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
                                                     <td>
                                                         <a href="{{ route('admin.ruangan.edit', ['id' => $ruangan->id]) }}" class="btn btn-secondary btn-sm my-auto py-0">Edit</a>
                                                     </td>
@@ -93,18 +85,6 @@
                 </div>
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </x-app>

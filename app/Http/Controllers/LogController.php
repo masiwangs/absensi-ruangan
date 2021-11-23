@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
@@ -205,5 +206,11 @@ class LogController extends Controller
         }
 
         return back();
+    }
+
+    public function destroy($id) {
+        $log = LogVisitor::find($id);
+        $log->delete();
+        return back()->with('success', 'Log berhasil dihapus');
     }
 }

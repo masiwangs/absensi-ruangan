@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? null }} | Absensi Ruangan</title>
+    <title>{{ $title ?? null }} | Data Center Log Indonesia Eximbank</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -15,10 +15,10 @@
             font-family: 'Zen Kaku Gothic Antique', sans-serif;
         }
         h1, h2, h3, h4, h5, h6 {
-            color: #254990!important
+            color: #244d8f!important
         }
         .btn-primary {
-            background-color: #254990
+            background-color: #244d8f
         }
         .dropdown:hover .dropdown-menu {
             display: block;

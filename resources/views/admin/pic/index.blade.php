@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="title">Dashboard Admin</x-slot>
+    <x-slot name="title">Manajemen PIC TSI</x-slot>
 
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -8,23 +8,29 @@
             <div class="content-wrapper container">
 
                 <div class="page-heading">
-                    <h3>Manajemen PIC</h3>
+                    <h3>Manajemen PIC TSI</h3>
                 </div>
                 <div class="page-content">
                     <section class="row">
                         <div class="col-12 col-lg-9">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between">
-                                    <h4 class="h4">Daftar PIC</h4>
-                                    <a href="{{ route('admin.ruangan.baru') }}" class="btn my-auto text-primary"><i class="bi bi-plus"></i> Ruangan Baru</a>
+                                    <h4 class="h4">Daftar PIC TSI</h4>
+                                    <a href="{{ route('admin.pic.baru') }}" class="btn my-auto text-primary"><i class="bi bi-plus"></i> PIC TSI Baru</a>
                                 </div>
                                 <div class="card-body">
+                                    @if(\Session::has('success'))
+                                    <div class="alert alert-success mb-4" role="alert">
+                                        {{ \Session::get('success') }}
+                                    </div>
+                                    @endif
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Nama PIC</th>
+                                                    <th>Nama PIC TSI</th>
                                                     <th>Email</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -32,6 +38,9 @@
                                                 <tr>
                                                     <td>{{ $pic->name }}</td>
                                                     <td>{{ $pic->email }}</td>
+                                                    <td>
+                                                        <a href="/admin/{{ $pic->id }}}/reset-password" class="btn btn-primary btn-sm">Reset Password</a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -43,7 +52,7 @@
                         <div class="col-12 col-lg-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="h4">Pencarian PIC</h4>
+                                    <h4 class="h4">Pencarian PIC TSI</h4>
                                 </div>
                                 <div class="card-body">
                                     <form action="" method="get">
@@ -62,18 +71,6 @@
                 </div>
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </x-app>

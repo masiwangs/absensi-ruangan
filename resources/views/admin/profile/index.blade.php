@@ -65,18 +65,6 @@
 
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </x-app>

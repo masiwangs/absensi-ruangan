@@ -10,8 +10,10 @@ use DateInterval;
 use DatePeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -110,5 +112,14 @@ class AdminController extends Controller
         ]);
 
         return back()->with('success', 'Password berhasil diperbarui.');
+    }
+
+    public function resetOtherAdmin($id) {
+        $user = User::find($id);
+        $new_password = Str::random(6);
+        $user->update([
+            'password' => Hash::make($new_password)
+        ]);
+        return back()->with('success', 'Password berhasil diperbarui menjadi "'.$new_password.'"');
     }
 }

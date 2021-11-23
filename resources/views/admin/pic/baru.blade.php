@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot name="title">Dashboard Admin</x-slot>
+    <x-slot name="title">PIC TSI Baru</x-slot>
 
     <div id="app">
         <div id="main" class="layout-horizontal">
@@ -8,7 +8,7 @@
             <div class="content-wrapper container">
 
                 <div class="page-heading">
-                    <h3>PIC Baru</h3>
+                    <h3>PIC TSI Baru</h3>
                 </div>
                 <div class="page-content">
                     <section>
@@ -36,18 +36,6 @@
                 </div>
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </x-app>

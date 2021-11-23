@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/log/{id}/edit', [LogController::class, 'edit'])->name('admin.log.edit');
     Route::post('/admin/log/{id}/edit', [LogController::class, 'update']);
     Route::get('/admin/log/{id}/keluar', [LogController::class, 'keluar'])->name('admin.log.keluar');
+    Route::get('/admin/log/{id}/hapus', [LogController::class, 'destroy']);
     
     Route::get('/admin/pic', [PicController::class, 'index'])->name('admin.pic.index');
     Route::get('/admin/pic/baru', [PicController::class, 'create'])->name('admin.pic.baru');
@@ -50,6 +51,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/admin/profile', [AdminController::class, 'profileUpdate']);
     Route::get('/admin/profile/keamanan', [AdminController::class, 'security']);
     Route::post('/admin/profile/keamanan', [AdminController::class, 'securityUpdate']);
+
+    Route::get('/admin/{id}}/reset-password', [AdminController::class, 'resetOtherAdmin']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 

@@ -28,7 +28,7 @@
                                                       </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label">PIC</label>
+                                                    <label for="" class="form-label">PIC TSI</label>
                                                     <input name="pic" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Ketik untuk mencari...">
                                                     <datalist id="datalistOptions">
                                                         @foreach ($pics as $pic)
@@ -57,7 +57,7 @@
                                                     <input type="text" name="nama_visitor" id="" class="form-control">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label">Perusahaan</label>
+                                                    <label for="" class="form-label">Perusahaan/Institusi</label>
                                                     <input type="text" name="nama_perusahaan" id="" class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
@@ -89,18 +89,6 @@
 
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Your company</p>
-                        </div>
-                        <div class="float-end">
-                            <p>This is footer <span class="text-danger"><i class="bi bi-heart"></i></span></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 
